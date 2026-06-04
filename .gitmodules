@@ -1,0 +1,3 @@
+[submodule "src/pointcloud2_aggregator"]
+	path = src/pointcloud2_aggregator
+	url = https://github.com/Robotics-IoT-Pixel-Digital/pointcloud2_aggregator.git

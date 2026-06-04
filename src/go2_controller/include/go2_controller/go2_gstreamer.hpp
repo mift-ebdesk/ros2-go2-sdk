@@ -1,0 +1,33 @@
+#pragma once
+#include <rclcpp/rclcpp.hpp>
+#include <sensor_msgs/msg/compressed_image.hpp>
+#include <opencv2/opencv.hpp>
+#include <string>
+
+namespace go2_controller
+{
+
+class Go2GstreamerNode : public rclcpp::Node
+{
+public:
+    Go2GstreamerNode();
+
+private:
+    void DeclareParameters();
+    std::string BuildPipeline();
+    void TimerCallback();
+
+    rclcpp::Publisher<sensor_msgs::msg::CompressedImage>::SharedPtr pub_;
+    rclcpp::TimerBase::SharedPtr timer_;
+    cv::VideoCapture cap_;
+
+    std::string frame_id_;
+    int jpeg_quality_;
+    int output_width_;
+    int output_height_;
+    int output_fps_;
+    int64_t min_publish_period_ns_;
+    int64_t last_publish_ns_;
+};
+
+}

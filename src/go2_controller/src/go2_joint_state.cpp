@@ -13,7 +13,12 @@ Go2JointState::Go2JointState(rclcpp::Node * node)
   }
 {
     joint_pub_ = node_->create_publisher<sensor_msgs::msg::JointState>("/joint_states", 10);
-    imu_pub_ = node_->create_publisher<sensor_msgs::msg::Imu>("/imu/data", 10);
+
+    low_state_sub_ = node_->create_subscription<unitree_go::msg::LowState>(
+        "/lf/lowstate", 10,
+        [this](const unitree_go::msg::LowState::SharedPtr msg) {
+            Update(msg);
+        });
 }
 
 void Go2JointState::Update(const unitree_go::msg::LowState::SharedPtr msg)
@@ -32,21 +37,6 @@ void Go2JointState::Update(const unitree_go::msg::LowState::SharedPtr msg)
         js.effort[i] = msg->motor_state[i].tau_est;
     }
     joint_pub_->publish(js);
-
-    sensor_msgs::msg::Imu imu;
-    imu.header.stamp = node_->now();
-    imu.header.frame_id = "imu";
-    imu.orientation.w = msg->imu_state.quaternion[0];
-    imu.orientation.x = msg->imu_state.quaternion[1];
-    imu.orientation.y = msg->imu_state.quaternion[2];
-    imu.orientation.z = msg->imu_state.quaternion[3];
-    imu.angular_velocity.x = msg->imu_state.gyroscope[0];
-    imu.angular_velocity.y = msg->imu_state.gyroscope[1];
-    imu.angular_velocity.z = msg->imu_state.gyroscope[2];
-    imu.linear_acceleration.x = msg->imu_state.accelerometer[0];
-    imu.linear_acceleration.y = msg->imu_state.accelerometer[1];
-    imu.linear_acceleration.z = msg->imu_state.accelerometer[2];
-    imu_pub_->publish(imu);
 }
 
 }

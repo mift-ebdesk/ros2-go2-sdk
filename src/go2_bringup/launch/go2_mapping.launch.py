@@ -11,8 +11,7 @@ class Go2LaunchConfig:
     def __init__(self):
         self.controller_dir = get_package_share_directory('go2_controller')
         self.navigation_dir = get_package_share_directory('go2_navigation')
-        self.description_dir = get_package_share_directory('go2_description')
-        self.robot_ip = os.getenv('ROBOT_IP', '192.168.123.161')
+        self.bringup_dir = get_package_share_directory('go2_bringup')
 
 
 class Go2NodeFactory:
@@ -21,6 +20,15 @@ class Go2NodeFactory:
 
     def create_env_setup(self):
         return [SetEnvironmentVariable('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp')]
+
+    def create_bringup(self):
+        return [
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    os.path.join(self.config.bringup_dir, 'launch', 'go2_bringup.launch.py')
+                ),
+            ),
+        ]
 
     def create_aggregator_nodes(self):
         aggregator_dir = get_package_share_directory('pointcloud2_aggregator')
@@ -93,6 +101,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         *factory.create_env_setup(),
+        *factory.create_bringup(),
         *factory.create_aggregator_nodes(),
         *factory.create_laserscan_nodes(),
         *factory.create_teleop_nodes(),

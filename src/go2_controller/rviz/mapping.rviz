@@ -363,7 +363,7 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /odom
+        Value: /utlidar/robot_odom
       Value: false
   Enabled: true
   Global Options:

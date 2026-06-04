@@ -16,6 +16,7 @@
   <depend>unitree_go</depend>
   <depend>unitree_api</depend>
   <depend>std_msgs</depend>
+  <depend>libopencv-dev</depend>
   <exec_depend>joy</exec_depend>
   <exec_depend>teleop_twist_joy</exec_depend>
   <exec_depend>twist_mux</exec_depend>

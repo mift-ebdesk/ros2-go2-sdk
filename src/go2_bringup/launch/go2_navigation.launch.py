@@ -11,7 +11,7 @@ class Go2LaunchConfig:
     def __init__(self):
         self.controller_dir = get_package_share_directory('go2_controller')
         self.navigation_dir = get_package_share_directory('go2_navigation')
-        self.robot_ip = os.getenv('ROBOT_IP', '192.168.123.161')
+        self.bringup_dir = get_package_share_directory('go2_bringup')
 
 
 class Go2NodeFactory:
@@ -25,6 +25,15 @@ class Go2NodeFactory:
         default_map = os.path.join(self.config.navigation_dir, 'maps', 'lobby.yaml')
         return [
             DeclareLaunchArgument('map', default_value=default_map),
+        ]
+
+    def create_bringup(self):
+        return [
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    os.path.join(self.config.bringup_dir, 'launch', 'go2_bringup.launch.py')
+                ),
+            ),
         ]
 
     def create_aggregator_nodes(self):
@@ -112,6 +121,7 @@ def generate_launch_description():
     return LaunchDescription([
         *factory.create_env_setup(),
         *factory.create_launch_args(),
+        *factory.create_bringup(),
         *factory.create_aggregator_nodes(),
         *factory.create_laserscan_nodes(),
         *factory.create_teleop_nodes(),
