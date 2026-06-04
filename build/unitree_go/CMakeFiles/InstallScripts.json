@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/cmake_install.cmake",
+		"/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py/cmake_install.cmake",
+		"/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__rs/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,1 @@
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go/msg/MotorState.msg

@@ -1,0 +1,1 @@
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/rosidl_generator_py/unitree_go/msg/_motor_state_s.c

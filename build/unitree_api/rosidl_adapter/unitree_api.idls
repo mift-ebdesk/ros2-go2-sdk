@@ -1,0 +1,8 @@
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api:msg/Request.idl
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api:msg/RequestHeader.idl
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api:msg/RequestIdentity.idl
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api:msg/RequestLease.idl
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api:msg/RequestPolicy.idl
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api:msg/Response.idl
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api:msg/ResponseHeader.idl
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api:msg/ResponseStatus.idl
