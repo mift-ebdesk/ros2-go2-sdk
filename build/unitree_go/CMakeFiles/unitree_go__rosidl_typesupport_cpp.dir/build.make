@@ -53,7 +53,7 @@ RM = /home/ubuntu/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go
+CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_go
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go
@@ -670,6 +670,6 @@ CMakeFiles/unitree_go__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp
 CMakeFiles/unitree_go__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp/unitree_go/msg/uwb_state__type_support.cpp
 CMakeFiles/unitree_go__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp/unitree_go/msg/uwb_switch__type_support.cpp
 CMakeFiles/unitree_go__rosidl_typesupport_cpp.dir/depend: rosidl_typesupport_cpp/unitree_go/msg/wireless_controller__type_support.cpp
-	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/CMakeFiles/unitree_go__rosidl_typesupport_cpp.dir/DependInfo.cmake "--color=$(COLOR)" unitree_go__rosidl_typesupport_cpp
+	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/CMakeFiles/unitree_go__rosidl_typesupport_cpp.dir/DependInfo.cmake "--color=$(COLOR)" unitree_go__rosidl_typesupport_cpp
 .PHONY : CMakeFiles/unitree_go__rosidl_typesupport_cpp.dir/depend
 

@@ -1,1 +1,1 @@
-/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go/msg/WirelessController.msg
+/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_go/msg/WirelessController.msg

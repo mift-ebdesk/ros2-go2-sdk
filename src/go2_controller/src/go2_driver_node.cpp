@@ -14,8 +14,8 @@ Go2DriverNode::Go2DriverNode()
 
     RCLCPP_INFO(this->get_logger(), "Go2 Driver Node initialized");
     RCLCPP_INFO(this->get_logger(), "  TF:       /utlidar/robot_odom (native) -> odom->base_link");
-    RCLCPP_INFO(this->get_logger(), "  IMU:      /utlidar/imu (native, remapped to /imu/data in launch)");
-    RCLCPP_INFO(this->get_logger(), "  Odom:     /utlidar/robot_odom (native, remapped to /odom in launch)");
+    RCLCPP_INFO(this->get_logger(), "  IMU:      /utlidar/imu (native, available directly)");
+    RCLCPP_INFO(this->get_logger(), "  Odom:     /utlidar/robot_odom (native, available directly)");
     RCLCPP_INFO(this->get_logger(), "  Joints:   /lf/lowstate -> /joint_states");
     RCLCPP_INFO(this->get_logger(), "  CmdVel:   /cmd_vel_out -> /api/sport/request");
 }

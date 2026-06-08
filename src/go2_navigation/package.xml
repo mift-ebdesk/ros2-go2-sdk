@@ -4,7 +4,7 @@
   <name>go2_navigation</name>
   <version>0.1.0</version>
   <description>SLAM and Nav2 configurations and maps for Unitree Go2</description>
-  <maintainer email="user@example.com">user</maintainer>
+  <maintainer email="mifahul@pixeldigital.ai">user</maintainer>
   <license>BSD-3-Clause</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
   <exec_depend>navigation2</exec_depend>

@@ -46,7 +46,6 @@ ament_target_dependencies(go2_driver_node
 target_link_libraries(go2_driver_node go2_sport_client)
 
 add_executable(go2_gstreamer
-  src/go2_gstreamer_main.cpp
   src/go2_gstreamer.cpp
 )
 target_include_directories(go2_gstreamer PUBLIC
@@ -56,18 +55,7 @@ target_include_directories(go2_gstreamer PUBLIC
 ament_target_dependencies(go2_gstreamer rclcpp sensor_msgs)
 target_link_libraries(go2_gstreamer ${OpenCV_LIBS})
 
-add_executable(go2_gstreamer_jetson
-  src/go2_gstreamer_jetson_main.cpp
-  src/go2_gstreamer_jetson.cpp
-)
-target_include_directories(go2_gstreamer_jetson PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
-)
-ament_target_dependencies(go2_gstreamer_jetson rclcpp sensor_msgs)
-target_link_libraries(go2_gstreamer_jetson ${OpenCV_LIBS})
-
-install(TARGETS go2_driver_node go2_sport_client go2_gstreamer go2_gstreamer_jetson
+install(TARGETS go2_driver_node go2_sport_client go2_gstreamer
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}

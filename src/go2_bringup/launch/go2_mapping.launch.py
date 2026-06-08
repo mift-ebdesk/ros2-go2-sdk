@@ -1,6 +1,6 @@
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
@@ -9,90 +9,78 @@ from ament_index_python.packages import get_package_share_directory
 
 class Go2LaunchConfig:
     def __init__(self):
-        self.controller_dir = get_package_share_directory('go2_controller')
-        self.navigation_dir = get_package_share_directory('go2_navigation')
-        self.bringup_dir = get_package_share_directory('go2_bringup')
+        dirs = {
+            'controller': get_package_share_directory('go2_controller'),
+            'navigation': get_package_share_directory('go2_navigation'),
+            'bringup': get_package_share_directory('go2_bringup'),
+        }
+        self.configs = {
+            'cyclonedds_pc': os.path.join(dirs['controller'], 'config', 'cyclonedds_pc.xml'),
+            'cyclonedds_jetson': os.path.join(dirs['controller'], 'config', 'cyclonedds_jetson.xml'),
+            'slam_params': os.path.join(dirs['navigation'], 'config', 'slam_params.yaml'),
+            'rviz_slam': os.path.join(dirs['controller'], 'rviz', 'mapping.rviz'),
+            'bringup_launch': os.path.join(dirs['bringup'], 'launch', 'go2_bringup.launch.py'),
+        }
 
 
 class Go2NodeFactory:
     def __init__(self, config: Go2LaunchConfig):
         self.config = config
 
+    def create_launch_args(self):
+        return [
+            DeclareLaunchArgument('camera', default_value='true'),
+            DeclareLaunchArgument('platform', default_value='jetson'),
+            DeclareLaunchArgument('mqtt', default_value='false'),
+        ]
+
     def create_env_setup(self):
-        return [SetEnvironmentVariable('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp')]
+        def setup_env(context):
+            platform = context.launch_configurations.get('platform', 'jetson')
+            xml_config = self.config.configs[f'cyclonedds_{platform}']
+            return [
+                SetEnvironmentVariable('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'),
+                SetEnvironmentVariable('CYCLONEDDS_URI', xml_config),
+            ]
+        return [OpaqueFunction(function=setup_env)]
 
     def create_bringup(self):
         return [
             IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(
-                    os.path.join(self.config.bringup_dir, 'launch', 'go2_bringup.launch.py')
-                ),
-            ),
-        ]
-
-    def create_aggregator_nodes(self):
-        aggregator_dir = get_package_share_directory('pointcloud2_aggregator')
-        return [
-            Node(
-                package='pointcloud2_aggregator',
-                executable='aggregator',
-                parameters=[os.path.join(aggregator_dir, 'config', 'aggregator.yaml')],
-            ),
-        ]
-
-    def create_laserscan_nodes(self):
-        return [
-            Node(
-                package='pointcloud_to_laserscan',
-                executable='pointcloud_to_laserscan_node',
-                remappings=[
-                    ('cloud_in', '/utlidar/cloud_deskewed_aggregated'),
-                ],
-                parameters=[os.path.join(self.config.navigation_dir, 'config', 'pointcloud_to_laserscan.yaml')],
+                PythonLaunchDescriptionSource(self.config.configs['bringup_launch']),
+                launch_arguments={
+                    'camera': LaunchConfiguration('camera'),
+                    'platform': LaunchConfiguration('platform'),
+                    'mqtt': LaunchConfiguration('mqtt'),
+                }.items(),
             ),
         ]
 
     def create_slam_launches(self):
-        slam_params = os.path.join(self.config.navigation_dir, 'config', 'slam_params.yaml')
         return [
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
                     os.path.join(get_package_share_directory('slam_toolbox'), 'launch', 'online_async_launch.py')
                 ),
-                launch_arguments={'slam_params_file': slam_params}.items(),
-            ),
-        ]
-
-    def create_teleop_nodes(self):
-        controller_dir = self.config.controller_dir
-        return [
-            Node(
-                package='joy',
-                executable='joy_node',
-                parameters=[os.path.join(controller_dir, 'config', 'joystick.yaml')],
-            ),
-            Node(
-                package='teleop_twist_joy',
-                executable='teleop_node',
-                name='go2_teleop_node',
-                parameters=[os.path.join(controller_dir, 'config', 'twist_mux.yaml')],
-            ),
-            Node(
-                package='twist_mux',
-                executable='twist_mux',
-                parameters=[os.path.join(controller_dir, 'config', 'twist_mux.yaml')],
+                launch_arguments={
+                    'slam_params_file': self.config.configs['slam_params'],
+                }.items(),
             ),
         ]
 
     def create_visualization_nodes(self):
-        rviz_config = os.path.join(self.config.controller_dir, 'rviz', 'mapping.rviz')
-        return [
-            Node(
-                package='rviz2',
-                executable='rviz2',
-                arguments=['-d', rviz_config],
-            ),
-        ]
+        def setup_rviz(context):
+            platform = context.launch_configurations.get('platform', 'jetson')
+            if platform == 'jetson':
+                return []
+            return [
+                Node(
+                    package='rviz2',
+                    executable='rviz2',
+                    arguments=['-d', self.config.configs['rviz_slam']],
+                ),
+            ]
+        return [OpaqueFunction(function=setup_rviz)]
 
 
 def generate_launch_description():
@@ -100,11 +88,9 @@ def generate_launch_description():
     factory = Go2NodeFactory(config)
 
     return LaunchDescription([
+        *factory.create_launch_args(),
         *factory.create_env_setup(),
         *factory.create_bringup(),
-        *factory.create_aggregator_nodes(),
-        *factory.create_laserscan_nodes(),
-        *factory.create_teleop_nodes(),
         *factory.create_slam_launches(),
         *factory.create_visualization_nodes(),
     ])

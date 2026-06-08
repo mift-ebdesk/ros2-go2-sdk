@@ -53,7 +53,7 @@ RM = /home/ubuntu/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go
+CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_go
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go
@@ -442,6 +442,6 @@ unitree_go__py: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree
 .PHONY : /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py/CMakeFiles/unitree_go__py.dir/clean
 
 /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py/CMakeFiles/unitree_go__py.dir/depend:
-	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py/CMakeFiles/unitree_go__py.dir/DependInfo.cmake "--color=$(COLOR)" unitree_go__py
+	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py/CMakeFiles/unitree_go__py.dir/DependInfo.cmake "--color=$(COLOR)" unitree_go__py
 .PHONY : /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/unitree_go__py/CMakeFiles/unitree_go__py.dir/depend
 

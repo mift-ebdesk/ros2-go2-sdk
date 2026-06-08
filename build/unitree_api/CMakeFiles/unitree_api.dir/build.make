@@ -53,7 +53,7 @@ RM = /home/ubuntu/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api
+CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api
@@ -66,14 +66,14 @@ include CMakeFiles/unitree_api.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/unitree_api.dir/progress.make
 
-CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/Request.msg
-CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestHeader.msg
-CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestIdentity.msg
-CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestLease.msg
-CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestPolicy.msg
-CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/Response.msg
-CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/ResponseHeader.msg
-CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/ResponseStatus.msg
+CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/Request.msg
+CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestHeader.msg
+CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestIdentity.msg
+CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestLease.msg
+CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestPolicy.msg
+CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/Response.msg
+CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/ResponseHeader.msg
+CMakeFiles/unitree_api: /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/ResponseStatus.msg
 CMakeFiles/unitree_api: /opt/ros/humble/share/geometry_msgs/msg/Accel.idl
 CMakeFiles/unitree_api: /opt/ros/humble/share/geometry_msgs/msg/AccelStamped.idl
 CMakeFiles/unitree_api: /opt/ros/humble/share/geometry_msgs/msg/AccelWithCovariance.idl
@@ -123,6 +123,6 @@ CMakeFiles/unitree_api.dir/clean:
 .PHONY : CMakeFiles/unitree_api.dir/clean
 
 CMakeFiles/unitree_api.dir/depend:
-	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/CMakeFiles/unitree_api.dir/DependInfo.cmake "--color=$(COLOR)" unitree_api
+	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/CMakeFiles/unitree_api.dir/DependInfo.cmake "--color=$(COLOR)" unitree_api
 .PHONY : CMakeFiles/unitree_api.dir/depend
 

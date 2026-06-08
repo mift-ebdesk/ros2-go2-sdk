@@ -53,7 +53,7 @@ RM = /home/ubuntu/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go
+CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_go
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go
@@ -85,6 +85,6 @@ CMakeFiles/ament_cmake_python_symlink_unitree_go.dir/clean:
 .PHONY : CMakeFiles/ament_cmake_python_symlink_unitree_go.dir/clean
 
 CMakeFiles/ament_cmake_python_symlink_unitree_go.dir/depend:
-	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/CMakeFiles/ament_cmake_python_symlink_unitree_go.dir/DependInfo.cmake "--color=$(COLOR)" ament_cmake_python_symlink_unitree_go
+	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/CMakeFiles/ament_cmake_python_symlink_unitree_go.dir/DependInfo.cmake "--color=$(COLOR)" ament_cmake_python_symlink_unitree_go
 .PHONY : CMakeFiles/ament_cmake_python_symlink_unitree_go.dir/depend
 

@@ -1,86 +1,73 @@
-# Unitree Go2 Pro — ROS2 SDK Workspace
+# Go2 SDK Workspace
 
-ROS2 Humble workspace for the Unitree Go2 Pro. Native-based architecture that consumes the robot's standard ROS2 topics directly via CycloneDDS over Ethernet. Provides SLAM, Nav2 navigation, teleoperation, and front camera streaming.
+ROS2 Humble workspace for the Unitree Go2 Pro. Connects to the robot over Ethernet via CycloneDDS, consumes native ROS2 topics directly, and provides SLAM, Nav2 navigation, teleoperation, and camera streaming.
+
+Designed for **Jetson** (default) and **PC** deployment.
+
+---
 
 ## Architecture
 
 ```
-sdk_ws/src/
-├── go2_sdk/                 # Official unitree_ros2 message definitions (unitree_go, unitree_api)
-├── go2_description/         # URDF, meshes, sensor frames
-├── go2_controller/          # C++ bridge nodes, sport client, gstreamer, configs
-├── go2_navigation/          # SLAM & Nav2 params, maps
-├── go2_bringup/             # Launch files (OOP pattern)
-└── pointcloud2_aggregator/  # External submodule (lidar point cloud aggregation)
+src/
+├── go2_sdk/                  # Unitree message definitions
+│   ├── unitree_go/           #   SportModeState, LowState, WirelessController, ...
+│   ├── unitree_api/          #   Request, Response (sport API)
+│   ├── setup.sh              #   Quick environment setup
+│   └── LICENSE
+├── go2_description/          # URDF, meshes, display launch
+├── go2_controller/           # C++ bridge nodes + gstreamer + configs
+├── go2_navigation/           # Nav2/SLAM params + 12 maps
+├── go2_bringup/              # Launch files
+└── pointcloud2_aggregator/   # External submodule (lidar aggregation)
 ```
 
 ### Data Flow
 
 ```
-Go2 Robot (192.168.123.161) ──── Ethernet ──── PC (192.168.123.99)
-                                         CycloneDDS
+Go2 Robot (192.168.123.161) ──── Ethernet/CycloneDDS ──── Jetson or PC
 
- ┌─────────────── Native (standard ROS2, zero conversion) ───────────────┐
- │                                                                       │
- │  /utlidar/robot_odom (nav_msgs/Odometry, 150Hz)                      │
- │      └─► Go2TfBroadcaster ──► TF odom→base_link                      │
- │      └─► Nav2 velocity_smoother, bt_navigator (direct subscription)  │
- │                                                                       │
- │  /utlidar/imu (sensor_msgs/Imu, 250Hz)                               │
- │      └─► Available to Nav2, SLAM, and other nodes directly            │
- │                                                                       │
- │  /utlidar/cloud_deskewed (sensor_msgs/PointCloud2, 15Hz)             │
- │      └─► pointcloud2_aggregator ──► pointcloud_to_laserscan ──► /scan│
- │                                                                       │
- │  /utlidar/robot_pose (geometry_msgs/PoseStamped, 150Hz)              │
- │      └─► Available for localization overlays                          │
- │                                                                       │
- └───────────────────────────────────────────────────────────────────────┘
+ NATIVE TOPICS (standard ROS2, zero conversion)
+ ─────────────────────────────────────────────
+ /utlidar/robot_odom  (nav_msgs/Odometry, 150Hz)
+     ├─► Go2TfBroadcaster ──► TF odom→base_link
+     └─► Nav2 (controller_server, bt_navigator, velocity_smoother)
 
- ┌─────────────── Bridge (robot doesn't provide natively) ──────────────┐
- │                                                                       │
- │  /lf/lowstate (unitree_go/LowState)                                  │
- │      └─► Go2JointState ──► /joint_states (sensor_msgs/JointState)   │
- │                                                                       │
- │  /cmd_vel_out (geometry_msgs/Twist)                                  │
- │      └─► Go2CmdVelBridge ──► /api/sport/request (Move API)          │
- │                                                                       │
- │  /joy (sensor_msgs/Joy)                                              │
- │      └─► Go2CmdVelBridge ──► /api/sport/request (StandUp/Down/Stop) │
- │                                                                       │
- └───────────────────────────────────────────────────────────────────────┘
+ /utlidar/imu  (sensor_msgs/Imu, 250Hz)
+     └─► Available to all nodes directly
 
- ┌─────────────── Camera (GStreamer H.264 RTP multicast) ──────────────┐
- │                                                                       │
- │  UDP 230.1.1.1:1720 (H.264 stream)                                  │
- │      ├─► go2_gstreamer (PC, avdec_h264 software decode)             │
- │      └─► go2_gstreamer_jetson (Jetson, nvv4l2decoder HW decode)    │
- │      └─► /frontcamera/compressed (sensor_msgs/CompressedImage)      │
- │                                                                       │
- └───────────────────────────────────────────────────────────────────────┘
+ /utlidar/cloud_deskewed  (sensor_msgs/PointCloud2, 15Hz)
+     └─► aggregator ──► pointcloud_to_laserscan ──► /scan
+
+ BRIDGE TOPICS (robot doesn't provide natively)
+ ────────────────────────────────────────────────
+ /lf/lowstate  (unitree_go/LowState)
+     └─► Go2JointState ──► /joint_states
+
+ /cmd_vel_out  (geometry_msgs/Twist)
+     └─► Go2CmdVelBridge ──► /api/sport/request (Move API)
+
+ /joy  (sensor_msgs/Joy)
+     └─► Go2CmdVelBridge ──► /api/sport/request (StandUp/Down/Stop)
+
+ CAMERA (GStreamer H.264 RTP multicast)
+ ────────────────────────────────────────
+ UDP 230.1.1.1:1720
+     └─► go2_gstreamer ──► /frontcamera/compressed (CompressedImage)
+         (jetson: nvv4l2decoder + reader thread, pc: avdec_h264)
 ```
-
-The robot natively publishes standard ROS2 messages (`nav_msgs/Odometry`, `sensor_msgs/Imu`, `sensor_msgs/PointCloud2`) at high frequency. Bridge nodes only fill 3 gaps the robot doesn't provide: TF broadcasting, velocity→sport API conversion, and joint state conversion.
 
 ### TF Tree
 
 ```
 map ──► odom ──► base_link ──► [12 leg joints + imu + utlidar_imu + utlidar_lidar + camera]
-                ▲                         ▲
-                │                         │
-     AMCL/SLAM publishes      Go2TfBroadcaster publishes
-     (from /scan + /map)      (from /utlidar/robot_odom)
-                               + robot_state_publisher
-                                 (from URDF fixed joints)
+       ▲           ▲
+  AMCL/SLAM    Go2TfBroadcaster + robot_state_publisher
 ```
 
-## Prerequisites
+---
 
-- Ubuntu 22.04
-- ROS2 Humble
-- CycloneDDS (`ros-humble-rmw-cyclonedds-cpp`)
-- OpenCV with GStreamer support (`libopencv-dev`, GStreamer plugins)
-- Ethernet connection to robot (PC: `192.168.123.99`, Robot: `192.168.123.161`)
+## Quick Start
 
 ### System Dependencies
 
@@ -88,169 +75,203 @@ map ──► odom ──► base_link ──► [12 leg joints + imu + utlidar_
 sudo apt install \
   ros-humble-rmw-cyclonedds-cpp \
   ros-humble-rosidl-generator-dds-idl \
-  ros-humble-navigation2 \
-  ros-humble-nav2-bringup \
+  ros-humble-navigation2 ros-humble-nav2-bringup \
   ros-humble-slam-toolbox \
   ros-humble-pointcloud-to-laserscan \
-  ros-humble-twist-mux \
-  ros-humble-teleop-twist-joy \
-  ros-humble-joy \
-  ros-humble-robot-state-publisher \
-  ros-humble-xacro \
-  ros-humble-tf2-ros \
-  ros-humble-image-transport \
-  ros-humble-compressed-image-transport \
-  libopencv-dev \
-  libyaml-cpp-dev \
-  nlohmann-json3-dev \
-  python3-gi \
-  gir1.2-gst-1.0 \
-  gstreamer1.0-plugins-base-apps \
-  gstreamer1.0-libav
+  ros-humble-twist-mux ros-humble-teleop-twist-joy ros-humble-joy \
+  ros-humble-robot-statepublisher ros-humble-xacro ros-humble-tf2-ros \
+  ros-humble-image-transport ros-humble-compressed-image-transport \
+  libopencv-dev libyaml-cpp-dev nlohmann-json3-dev \
+  gstreamer1.0-plugins-base-apps gstreamer1.0-libav
 ```
 
-### Jetson Additional Dependencies
-
-For `go2_gstreamer_jetson`:
-- Jetson-specific GStreamer plugins (`nvv4l2decoder`, `nvvidconv`)
-- OpenCV built with GStreamer support for Jetson
-
-## Build
+### Build
 
 ```bash
 source /opt/ros/humble/setup.bash
-cd /path/to/sdk_ws
-
-# Initialize submodules
 git submodule update --init --recursive
-
-# Build all packages
-colcon build --symlink-install
-
-# Source workspace
+colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+ln -sf build/compile_commands.json compile_commands.json
 source install/setup.bash
 ```
 
-## Usage
-
-### Environment Setup
+### Launch
 
 ```bash
-# Set CycloneDDS as RMW
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-
-# Configure network interface (replace enp3s0 with your interface)
-export CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces>
-  <NetworkInterface name="enp3s0" priority="default" multicast="default" />
-</Interfaces></General></Domain></CycloneDDS>'
-```
-
-Or use the setup script:
-```bash
-source src/go2_controller/scripts/setup_cyclonedds.sh
-```
-
-### Launch Modes
-
-```bash
-source install/setup.bash
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-
-# Base bringup (driver + URDF + TF)
+# Full bringup (driver + camera + URDF + lidar pipeline + teleop)
 ros2 launch go2_bringup go2_bringup.launch.py
 
-# SLAM mapping (bringup + aggregator + laserscan + SLAM Toolbox + teleop + RViz)
+# SLAM mapping
 ros2 launch go2_bringup go2_mapping.launch.py
 
-# Navigation (bringup + aggregator + laserscan + Nav2 + AMCL + teleop + RViz)
-ros2 launch go2_bringup go2_navigation.launch.py map:=/path/to/map.yaml
+# Navigation with default map
+ros2 launch go2_bringup go2_navigation.launch.py
 
-# Remote teleop only (driver + joystick)
+# Navigation with custom map
+ros2 launch go2_bringup go2_navigation.launch.py map:=$(ros2 pkg prefix go2_navigation)/share/go2_navigation/maps/studio.yaml
+
+# Remote teleop only (no lidar pipeline)
 ros2 launch go2_bringup go2_remote.launch.py
-
-# Camera (run separately)
-ros2 run go2_controller go2_gstreamer --ros-args --params-file src/go2_controller/config/gstreamer.yaml
-ros2 run go2_controller go2_gstreamer_jetson --ros-args --params-file src/go2_controller/config/gstreamer.yaml
 ```
 
-### Environment Variables
+### Launch Arguments
 
-| Variable | Default | Description |
+All launch files accept these args:
+
+| Arg | Default | Values | Effect |
+|---|---|---|---|
+| `platform` | `jetson` | `jetson`, `pc` | Selects CycloneDDS XML, gstreamer config, and enables/disables RViz |
+| `camera` | `true` | `true`, `false` | Enable/disable front camera gstreamer node |
+| `mqtt` | `false` | `true`, `false` | When true, disables joy_node and teleop (use MQTT bridge instead) |
+
+`go2_navigation.launch.py` additionally accepts:
+
+| Arg | Default | Description |
 |---|---|---|
-| `ROBOT_IP` | `192.168.123.161` | Robot IP address |
-| `RMW_IMPLEMENTATION` | `rmw_cyclonedds_cpp` | DDS middleware |
-| `CYCLONEDDS_URI` | (auto) | CycloneDDS network interface config |
+| `map` | `lobby.yaml` | Path to map yaml file |
+
+**Platform behavior:**
+
+| | `jetson` | `pc` |
+|---|---|---|
+| CycloneDDS | `cyclonedds_jetson.xml` | `cyclonedds_pc.xml` |
+| Gstreamer | `gstreamer_jetson.yaml` (nvv4l2decoder HW) | `gstreamer_pc.yaml` (avdec_h264 SW) |
+| RViz | Off | On |
+
+**Examples:**
+
+```bash
+# PC deployment
+ros2 launch go2_bringup go2_navigation.launch.py platform:=pc
+
+# Jetson, no camera, MQTT control
+ros2 launch go2_bringup go2_bringup.launch.py camera:=false mqtt:=true
+
+# PC remote teleop, no camera
+ros2 launch go2_bringup go2_remote.launch.py platform:=pc camera:=false
+```
+
+---
 
 ## Packages
 
 ### go2_sdk
-Clipped copy of the official [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2) repository. Contains only `unitree_go` and `unitree_api` message definitions (all docs, examples, and `unitree_hg` removed).
+
+Vendor message definitions from the official [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2) repo, trimmed to only what the Go2 needs:
+- `unitree_go` — `SportModeState`, `LowState`, `LowCmd`, `WirelessController`, `IMUState`, `MotorState`
+- `unitree_api` — `Request`, `Response` (sport API)
 
 ### go2_description
-Robot URDF (`go2.urdf`), meshes, and joint definitions. Defines all sensor frames (`utlidar_lidar`, `utlidar_imu`, `imu`, `front_camera`) as fixed joints from `base_link`. Published via `robot_state_publisher`.
+
+URDF (`go2.urdf`), collision meshes (DAE), and a display launch for visualizing the robot model. Sensor frames defined as fixed joints from `base_link`:
+
+| Frame | Offset from base_link |
+|---|---|
+| `utlidar_lidar` | `(0.289, 0, -0.047)` pitch=2.8782 rad |
+| `utlidar_imu` | `(-0.026, 0, 0.042)` |
+| `imu` | `(0, 0, 0)` |
+| `front_camera` | Head link offset |
 
 ### go2_controller
-C++ bridge nodes and utilities. OOP class-based design:
-- **`go2_driver_node`** — Composition root containing:
-  - `Go2TfBroadcaster` — Subscribes to `/utlidar/robot_odom`, broadcasts `odom→base_link` TF
-  - `Go2JointState` — Subscribes to `/lf/lowstate`, publishes `/joint_states`
-  - `Go2CmdVelBridge` — Subscribes to `/cmd_vel_out` and `/joy`, calls sport API via `Go2SportClient`
-- **`go2_gstreamer`** — PC front camera (H.264 RTP → `avdec_h264` → JPEG → `CompressedImage`)
-- **`go2_gstreamer_jetson`** — Jetson front camera (H.264 RTP → `nvv4l2decoder` HW decode + reader thread → JPEG → `CompressedImage`)
-- **`Go2SportClient`** — Sport API request builder (Move, StandUp, StandDown, StopMove, etc.)
+
+C++ nodes and utilities. OOP class-based design.
+
+**`go2_driver_node`** — Single composition root containing:
+- `Go2TfBroadcaster` — Subscribes `/utlidar/robot_odom`, broadcasts TF `odom->base_link`
+- `Go2JointState` — Subscribes `/lf/lowstate`, publishes `/joint_states`
+- `Go2CmdVelBridge` — Subscribes `/cmd_vel_out` + `/joy`, calls sport API
+- `Go2SportClient` — Sport API request builder (Move, StandUp, StandDown, StopMove, etc.)
+
+**`go2_gstreamer`** — Front camera node. Single executable, dual platform:
+- `platform:=jetson` — `nvv4l2decoder` hardware decode, dedicated reader thread, low-latency config
+- `platform:=pc` — `avdec_h264` software decode, single-threaded
+
+**Configs:**
+
+| File | Purpose |
+|---|---|
+| `gstreamer_jetson.yaml` / `gstreamer_pc.yaml` | Camera params per platform |
+| `cyclonedds_jetson.xml` / `cyclonedds_pc.xml` | CycloneDDS network config per platform |
+| `twist_mux.yaml` | Teleop + Nav2 velocity muxing (Nav2 priority=10 > joystick=5) |
+| `joystick.yaml` | Joy node device config |
 
 ### go2_navigation
-SLAM Toolbox and Nav2 configuration files. All topic references point to native robot topics (`/utlidar/robot_odom`, `/scan`). Includes 12 saved maps.
+
+SLAM Toolbox and Nav2 configuration. All topic references point to native robot topics:
+
+| Config | Key Settings |
+|---|---|
+| `nav2_params.yaml` | `odom_topic: /utlidar/robot_odom`, `scan_topic: /scan`, DWB controller, SmacPlanner2D |
+| `slam_params.yaml` | `odom_frame: odom`, `scan_topic: /scan`, Ceres solver, loop closing enabled |
+| `pointcloud_to_laserscan.yaml` | `target_frame: base_link`, full 360° scan, range 0.1–10m |
+
+**12 maps** included: `lobby`, `studio`, `stair`, `FullMap`, and variants.
 
 ### go2_bringup
-Launch files using OOP `Go2LaunchConfig` + `Go2NodeFactory` pattern:
-- `go2_bringup.launch.py` — Driver + URDF
-- `go2_mapping.launch.py` — Bringup + aggregator + laserscan + SLAM + teleop + RViz
-- `go2_navigation.launch.py` — Bringup + aggregator + laserscan + Nav2 + AMCL + teleop + RViz
-- `go2_remote.launch.py` — Driver + teleop only
+
+Launch files using OOP `Go2LaunchConfig` + `Go2NodeFactory` pattern. All config file paths centralized in `Go2LaunchConfig.configs` dict.
+
+| Launch | Description | Brings Up |
+|---|---|---|
+| `go2_bringup.launch.py` | Base bringup | Driver + camera + URDF + aggregator + laserscan + teleop |
+| `go2_mapping.launch.py` | SLAM mapping | Bringup + SLAM Toolbox + RViz (pc only) |
+| `go2_navigation.launch.py` | Autonomous nav | Bringup + Nav2 + AMCL + RViz (pc only) |
+| `go2_remote.launch.py` | Manual control | Driver + camera + teleop only |
 
 ### pointcloud2_aggregator
-Git submodule from [Robotics-IoT-Pixel-Digital](https://github.com/Robotics-IoT-Pixel-Digital/pointcloud2_aggregator). Aggregates partial point cloud scans from `/utlidar/cloud_deskewed` into a full 360° scan at `/utlidar/cloud_deskewed_aggregated`.
+
+Git submodule. Aggregates partial scans from `/utlidar/cloud_deskewed` into full 360° scan at `/utlidar/cloud_deskewed_aggregated`.
+
+---
 
 ## Topic Reference
 
-### Robot → PC (Native, Subscribe Directly)
+### Robot → PC (Native)
 
 | Topic | Type | Hz | Used By |
 |---|---|---|---|
 | `/utlidar/robot_odom` | `nav_msgs/Odometry` | 150 | TF broadcaster, Nav2 |
-| `/utlidar/imu` | `sensor_msgs/Imu` | 250 | Nav2, SLAM |
-| `/utlidar/cloud_deskewed` | `sensor_msgs/PointCloud2` | 15 | aggregator → laserscan |
-| `/utlidar/robot_pose` | `geometry_msgs/PoseStamped` | 150 | optional |
-| `/lf/lowstate` | `unitree_go/LowState` | 20 | Go2JointState |
-| `/lf/sportmodestate` | `unitree_go/SportModeState` | 50 | read-only monitoring |
-| `/wirelesscontroller` | `unitree_go/WirelessController` | — | read-only |
+| `/utlidar/imu` | `sensor_msgs/Imu` | 250 | Available directly |
+| `/utlidar/cloud_deskewed` | `sensor_msgs/PointCloud2` | 15 | Aggregator → laserscan → `/scan` |
+| `/lf/lowstate` | `unitree_go/LowState` | 20 | Go2JointState → `/joint_states` |
+| `/lf/sportmodestate` | `unitree_go/SportModeState` | 50 | Monitoring only |
+| `/wirelesscontroller` | `unitree_go/WirelessController` | — | Monitoring only |
 
-### PC → Robot (Bridge Publishes)
+### PC → Robot (Bridge)
 
-| Topic | Type | Hz | Published By |
-|---|---|---|---|
-| `/api/sport/request` | `unitree_api/Request` | on-demand | Go2CmdVelBridge |
-| `/joint_states` | `sensor_msgs/JointState` | 20 | Go2JointState |
-| `/frontcamera/compressed` | `sensor_msgs/CompressedImage` | 20 | go2_gstreamer / go2_gstreamer_jetson |
-
-### Internal Pipeline Topics
-
-| Topic | Type | Description |
+| Topic | Type | Published By |
 |---|---|---|
-| `/cmd_vel_joy` | `geometry_msgs/Twist` | teleop_twist_joy output |
-| `/cmd_vel` | `geometry_msgs/Twist` | Nav2 velocity_smoother output |
-| `/cmd_vel_out` | `geometry_msgs/Twist` | twist_mux output → Go2CmdVelBridge input |
-| `/scan` | `sensor_msgs/LaserScan` | pointcloud_to_laserscan output |
-| `/utlidar/cloud_deskewed_aggregated` | `sensor_msgs/PointCloud2` | aggregator output |
+| `/api/sport/request` | `unitree_api/Request` | Go2CmdVelBridge |
+| `/joint_states` | `sensor_msgs/JointState` | Go2JointState |
+| `/frontcamera/compressed` | `sensor_msgs/CompressedImage` | go2_gstreamer |
+
+### Internal Pipeline
+
+| Topic | Description |
+|---|---|
+| `/cmd_vel_joy` | teleop_twist_joy output |
+| `/cmd_vel` | Nav2 velocity_smoother output |
+| `/cmd_vel_out` | twist_mux merged output → Go2CmdVelBridge input |
+| `/scan` | pointcloud_to_laserscan output → Nav2/SLAM input |
+
+---
+
+## Velocity Flow
+
+```
+Nav2 planner ──► /cmd_vel (priority 10) ──┐
+                                           ├─► twist_mux ──► /cmd_vel_out ──► Go2CmdVelBridge ──► Robot
+Joystick ──► /cmd_vel_joy (priority 5) ───┘
+```
+
+---
 
 ## Motor & Sensor Reference
 
 - Motor index: 0-2=FL(hip,thigh,calf), 3-5=FR, 6-8=RL, 9-11=RR
-- Quaternion order in `SportModeState.imu_state.quaternion`: [w, x, y, z]
 - Native odom `frame_id`: `odom`, `child_frame_id`: `base_link`
-- URDF sensor offsets: `utlidar_lidar` at `(0.289, 0, -0.047)` rotated pitch=2.8782 rad, `utlidar_imu` at `(-0.026, 0, 0.042)`
+- Quaternion order: [w, x, y, z]
 
 ## Complete DDS Reference
 
-See [GO2_DDS.md](./GO2_DDS.md) for the full list of ~90 robot DDS topics with types, frequencies, and field descriptions.
+See [GO2_DDS.md](./GO2_DDS.md) for the full list of ~90 robot DDS topics.

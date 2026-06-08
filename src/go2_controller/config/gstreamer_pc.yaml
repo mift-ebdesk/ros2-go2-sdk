@@ -1,0 +1,15 @@
+go2_gstreamer:
+  ros__parameters:
+    platform: "pc"
+    image_topic: "/frontcamera/compressed"
+    frame_id: "go2_front_camera"
+    multicast_address: "230.1.1.1"
+    port: 1720
+    multicast_iface: "enp2s0"
+    buffer_size: 524288
+    latency_ms: 40
+    timer_period: 0.05
+    jpeg_quality: 90
+    output_width: 640
+    output_height: 360
+    output_fps: 20

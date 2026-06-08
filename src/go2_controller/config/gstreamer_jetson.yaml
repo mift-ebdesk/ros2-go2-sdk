@@ -1,0 +1,15 @@
+go2_gstreamer:
+  ros__parameters:
+    platform: "jetson"
+    image_topic: "/frontcamera/compressed"
+    frame_id: "go2_front_camera"
+    multicast_address: "230.1.1.1"
+    port: 1720
+    multicast_iface: "enP8p1s0"
+    buffer_size: 524288
+    latency_ms: 10
+    timer_period: 0.015
+    jpeg_quality: 60
+    output_width: 480
+    output_height: 270
+    output_fps: 20

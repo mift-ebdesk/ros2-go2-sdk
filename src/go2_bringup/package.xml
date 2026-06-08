@@ -4,15 +4,15 @@
   <name>go2_bringup</name>
   <version>0.1.0</version>
   <description>Launch files for Unitree Go2 robot bringup</description>
-  <maintainer email="user@example.com">user</maintainer>
+  <maintainer email="mifahul@pixeldigital.ai">user</maintainer>
   <license>BSD-3-Clause</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>go2_controller</depend>
   <depend>go2_description</depend>
   <depend>go2_navigation</depend>
   <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>xacro</exec_depend>
   <exec_depend>pointcloud_to_laserscan</exec_depend>
+  <exec_depend>pointcloud2_aggregator</exec_depend>
   <exec_depend>joy</exec_depend>
   <exec_depend>teleop_twist_joy</exec_depend>
   <exec_depend>twist_mux</exec_depend>

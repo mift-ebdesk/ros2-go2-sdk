@@ -53,7 +53,7 @@ RM = /home/ubuntu/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api
+CMAKE_SOURCE_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api
@@ -81,6 +81,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)" uninstall
+	cd /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api /home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)" uninstall
 .PHONY : CMakeFiles/uninstall.dir/depend
 

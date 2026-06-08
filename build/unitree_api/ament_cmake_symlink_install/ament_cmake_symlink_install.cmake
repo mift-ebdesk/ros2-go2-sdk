@@ -316,43 +316,43 @@ message(STATUS "Execute custom install script")
 # begin of custom install code
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/rosidl_interfaces/unitree_api" "DESTINATION" "share/ament_index/resource_index/rosidl_interfaces")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/rosidl_interfaces/unitree_api" "DESTINATION" "share/ament_index/resource_index/rosidl_interfaces")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/rosidl_interfaces/unitree_api" "DESTINATION" "share/ament_index/resource_index/rosidl_interfaces")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_c/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.h")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_c/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.h")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_c/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.h")
 
 # install(FILES "/opt/ros/humble/lib/python3.10/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/unitree_api/environment")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/opt/ros/humble/lib/python3.10/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/unitree_api/environment")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/opt/ros/humble/lib/python3.10/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/unitree_api/environment")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/unitree_api/environment")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/unitree_api/environment")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/unitree_api/environment")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_fastrtps_c/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN_EXCLUDE" "*.cpp")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_fastrtps_c/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN_EXCLUDE" "*.cpp")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_fastrtps_c/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN_EXCLUDE" "*.cpp")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_cpp/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.hpp")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_cpp/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.hpp")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_cpp/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.hpp")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_fastrtps_cpp/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN_EXCLUDE" "*.cpp")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_fastrtps_cpp/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN_EXCLUDE" "*.cpp")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_fastrtps_cpp/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN_EXCLUDE" "*.cpp")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_introspection_c/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.h")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_introspection_c/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.h")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_introspection_c/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.h")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_introspection_cpp/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.hpp")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_introspection_cpp/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.hpp")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_introspection_cpp/unitree_api/" "DESTINATION" "include/unitree_api/unitree_api" "PATTERN" "*.hpp")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/pythonpath.sh" "DESTINATION" "share/unitree_api/environment")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/pythonpath.sh" "DESTINATION" "share/unitree_api/environment")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/pythonpath.sh" "DESTINATION" "share/unitree_api/environment")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/pythonpath.dsv" "DESTINATION" "share/unitree_api/environment")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/pythonpath.dsv" "DESTINATION" "share/unitree_api/environment")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/pythonpath.dsv" "DESTINATION" "share/unitree_api/environment")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_python/unitree_api/unitree_api.egg-info/" "DESTINATION" "local/lib/python3.10/dist-packages/unitree_api-0.0.0-py3.10.egg-info")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_python/unitree_api/unitree_api.egg-info/" "DESTINATION" "local/lib/python3.10/dist-packages/unitree_api-0.0.0-py3.10.egg-info")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_python/unitree_api/unitree_api.egg-info/" "DESTINATION" "local/lib/python3.10/dist-packages/unitree_api-0.0.0-py3.10.egg-info")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_py/unitree_api/" "DESTINATION" "local/lib/python3.10/dist-packages/unitree_api" "PATTERN_EXCLUDE" "*.pyc" "PATTERN_EXCLUDE" "__pycache__")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_py/unitree_api/" "DESTINATION" "local/lib/python3.10/dist-packages/unitree_api" "PATTERN_EXCLUDE" "*.pyc" "PATTERN_EXCLUDE" "__pycache__")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_py/unitree_api/" "DESTINATION" "local/lib/python3.10/dist-packages/unitree_api" "PATTERN_EXCLUDE" "*.pyc" "PATTERN_EXCLUDE" "__pycache__")
 
 # install("TARGETS" "unitree_api__rosidl_typesupport_fastrtps_c__pyext" "DESTINATION" "local/lib/python3.10/dist-packages/unitree_api")
 include("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_symlink_install_targets_0_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
@@ -364,121 +364,121 @@ include("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_s
 include("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_symlink_install_targets_2_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/rust_packages/unitree_api" "DESTINATION" "share/ament_index/resource_index/rust_packages")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/rust_packages/unitree_api" "DESTINATION" "share/ament_index/resource_index/rust_packages")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/rust_packages/unitree_api" "DESTINATION" "share/ament_index/resource_index/rust_packages")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_rs/unitree_api/rust" "DESTINATION" "share/unitree_api")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_rs/unitree_api/rust" "DESTINATION" "share/unitree_api")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_rs/unitree_api/rust" "DESTINATION" "share/unitree_api")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/Request.idl" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/Request.idl" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/Request.idl" "DESTINATION" "share/unitree_api/msg")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestHeader.idl" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestHeader.idl" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestHeader.idl" "DESTINATION" "share/unitree_api/msg")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestIdentity.idl" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestIdentity.idl" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestIdentity.idl" "DESTINATION" "share/unitree_api/msg")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestLease.idl" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestLease.idl" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestLease.idl" "DESTINATION" "share/unitree_api/msg")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestPolicy.idl" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestPolicy.idl" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/RequestPolicy.idl" "DESTINATION" "share/unitree_api/msg")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/Response.idl" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/Response.idl" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/Response.idl" "DESTINATION" "share/unitree_api/msg")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/ResponseHeader.idl" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/ResponseHeader.idl" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/ResponseHeader.idl" "DESTINATION" "share/unitree_api/msg")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/ResponseStatus.idl" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/ResponseStatus.idl" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_adapter/unitree_api/msg/ResponseStatus.idl" "DESTINATION" "share/unitree_api/msg")
 
-# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/Request.msg" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/Request.msg" "DESTINATION" "share/unitree_api/msg")
+# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/Request.msg" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/Request.msg" "DESTINATION" "share/unitree_api/msg")
 
-# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestHeader.msg" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestHeader.msg" "DESTINATION" "share/unitree_api/msg")
+# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestHeader.msg" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestHeader.msg" "DESTINATION" "share/unitree_api/msg")
 
-# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestIdentity.msg" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestIdentity.msg" "DESTINATION" "share/unitree_api/msg")
+# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestIdentity.msg" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestIdentity.msg" "DESTINATION" "share/unitree_api/msg")
 
-# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestLease.msg" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestLease.msg" "DESTINATION" "share/unitree_api/msg")
+# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestLease.msg" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestLease.msg" "DESTINATION" "share/unitree_api/msg")
 
-# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestPolicy.msg" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/RequestPolicy.msg" "DESTINATION" "share/unitree_api/msg")
+# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestPolicy.msg" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestPolicy.msg" "DESTINATION" "share/unitree_api/msg")
 
-# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/Response.msg" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/Response.msg" "DESTINATION" "share/unitree_api/msg")
+# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/Response.msg" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/Response.msg" "DESTINATION" "share/unitree_api/msg")
 
-# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/ResponseHeader.msg" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/ResponseHeader.msg" "DESTINATION" "share/unitree_api/msg")
+# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/ResponseHeader.msg" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/ResponseHeader.msg" "DESTINATION" "share/unitree_api/msg")
 
-# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/ResponseStatus.msg" "DESTINATION" "share/unitree_api/msg")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/msg/ResponseStatus.msg" "DESTINATION" "share/unitree_api/msg")
+# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/ResponseStatus.msg" "DESTINATION" "share/unitree_api/msg")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/ResponseStatus.msg" "DESTINATION" "share/unitree_api/msg")
 
 # install(DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_dds_idl/unitree_api/msg/dds_connext/" "DESTINATION" "share/unitree_api/msg/dds_connext")
-ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_dds_idl/unitree_api/msg/dds_connext/" "DESTINATION" "share/unitree_api/msg/dds_connext")
+ament_cmake_symlink_install_directory("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" DIRECTORY "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_dds_idl/unitree_api/msg/dds_connext/" "DESTINATION" "share/unitree_api/msg/dds_connext")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/unitree_api" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/unitree_api" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/unitree_api" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/unitree_api" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/unitree_api" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/unitree_api" "DESTINATION" "share/ament_index/resource_index/parent_prefix_path")
 
 # install(FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/unitree_api/environment")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/unitree_api/environment")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh" "DESTINATION" "share/unitree_api/environment")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/unitree_api/environment")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/unitree_api/environment")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/ament_prefix_path.dsv" "DESTINATION" "share/unitree_api/environment")
 
 # install(FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/unitree_api/environment")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/unitree_api/environment")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/opt/ros/humble/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh" "DESTINATION" "share/unitree_api/environment")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/unitree_api/environment")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/unitree_api/environment")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/path.dsv" "DESTINATION" "share/unitree_api/environment")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/unitree_api")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/unitree_api")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.bash" "DESTINATION" "share/unitree_api")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/unitree_api")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/unitree_api")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.sh" "DESTINATION" "share/unitree_api")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/unitree_api")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/unitree_api")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.zsh" "DESTINATION" "share/unitree_api")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/unitree_api")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/unitree_api")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/local_setup.dsv" "DESTINATION" "share/unitree_api")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/unitree_api")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/unitree_api")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_environment_hooks/package.dsv" "DESTINATION" "share/unitree_api")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/packages/unitree_api" "DESTINATION" "share/ament_index/resource_index/packages")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/packages/unitree_api" "DESTINATION" "share/ament_index/resource_index/packages")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_index/share/ament_index/resource_index/packages/unitree_api" "DESTINATION" "share/ament_index/resource_index/packages")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_cmake/rosidl_cmake-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_cmake/rosidl_cmake-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_cmake/rosidl_cmake-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_include_directories/ament_cmake_export_include_directories-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_include_directories/ament_cmake_export_include_directories-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_include_directories/ament_cmake_export_include_directories-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_targets/ament_cmake_export_targets-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_targets/ament_cmake_export_targets-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_export_targets/ament_cmake_export_targets-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_cmake/rosidl_cmake_export_typesupport_targets-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_cmake/rosidl_cmake_export_typesupport_targets-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_cmake/rosidl_cmake_export_typesupport_targets-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake" "DESTINATION" "share/unitree_api/cmake")
 
 # install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_core/unitree_apiConfig.cmake" "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_core/unitree_apiConfig-version.cmake" "DESTINATION" "share/unitree_api/cmake")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_core/unitree_apiConfig.cmake" "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_core/unitree_apiConfig-version.cmake" "DESTINATION" "share/unitree_api/cmake")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_core/unitree_apiConfig.cmake" "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/ament_cmake_core/unitree_apiConfig-version.cmake" "DESTINATION" "share/unitree_api/cmake")
 
-# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/package.xml" "DESTINATION" "share/unitree_api")
-ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/cyclonedds_ws/src/unitree/unitree_api/package.xml" "DESTINATION" "share/unitree_api")
+# install(FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/package.xml" "DESTINATION" "share/unitree_api")
+ament_cmake_symlink_install_files("/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api" FILES "/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/package.xml" "DESTINATION" "share/unitree_api")

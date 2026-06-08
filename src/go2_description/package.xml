@@ -4,7 +4,7 @@
   <name>go2_description</name>
   <version>0.1.0</version>
   <description>URDF description for Unitree Go2 robot</description>
-  <maintainer email="user@example.com">user</maintainer>
+  <maintainer email="mifahul@pixeldigital.ai">user</maintainer>
   <license>BSD-3-Clause</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>urdf</depend>

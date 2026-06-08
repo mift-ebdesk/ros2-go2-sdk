@@ -3,3 +3,7 @@ build/*
 install/*
 log/*
 
+# IDE
+compile_commands.json
+.vscode/
+
