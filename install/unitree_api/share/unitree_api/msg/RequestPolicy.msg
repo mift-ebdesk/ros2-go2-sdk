@@ -1,1 +1,0 @@
-/home/ubuntu/Projects/UnitreeGo2/sdk_ws/src/go2_sdk/unitree_api/msg/RequestPolicy.msg

@@ -1,1 +1,0 @@
-/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/rosidl_generator_cpp/unitree_go/msg/detail/audio_data__traits.hpp

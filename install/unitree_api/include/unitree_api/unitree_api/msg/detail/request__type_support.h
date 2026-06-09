@@ -1,1 +1,0 @@
-/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_generator_c/unitree_api/msg/detail/request__type_support.h

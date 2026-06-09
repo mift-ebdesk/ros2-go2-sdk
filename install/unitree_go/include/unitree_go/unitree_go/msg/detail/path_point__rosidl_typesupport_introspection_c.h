@@ -1,1 +1,0 @@
-/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/rosidl_typesupport_introspection_c/unitree_go/msg/detail/path_point__rosidl_typesupport_introspection_c.h

@@ -1,1 +1,0 @@
-/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_api/rosidl_typesupport_introspection_c/unitree_api/msg/rosidl_typesupport_introspection_c__visibility_control.h

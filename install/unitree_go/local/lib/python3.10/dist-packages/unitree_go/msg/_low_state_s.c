@@ -1,1 +1,0 @@
-/home/ubuntu/Projects/UnitreeGo2/sdk_ws/build/unitree_go/rosidl_generator_py/unitree_go/msg/_low_state_s.c
