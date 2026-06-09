@@ -1,3 +1,6 @@
 [submodule "src/pointcloud2_aggregator"]
 	path = src/pointcloud2_aggregator
 	url = https://github.com/Robotics-IoT-Pixel-Digital/pointcloud2_aggregator.git
+[submodule "src/nav2-filters"]
+	path = src/nav2-filters
+	url = https://github.com/MiftahulSN/nav2-filters.git
