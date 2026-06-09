@@ -21,6 +21,8 @@ public:
     void FreeWalk(unitree_api::msg::Request & req);
     void SpeedLevel(unitree_api::msg::Request & req, int level);
     void SwitchJoystick(unitree_api::msg::Request & req, bool flag);
+    void Hello(unitree_api::msg::Request & req);
+    void Content(unitree_api::msg::Request & req);
     void Heart(unitree_api::msg::Request & req);
 
 private:

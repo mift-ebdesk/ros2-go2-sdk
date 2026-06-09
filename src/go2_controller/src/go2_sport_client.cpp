@@ -94,6 +94,18 @@ void Go2SportClient::SwitchJoystick(unitree_api::msg::Request & req, bool flag)
     req_pub_->publish(req);
 }
 
+void Go2SportClient::Hello(unitree_api::msg::Request & req)
+{
+    req.header.identity.api_id = SPORT_API_HELLO;
+    req_pub_->publish(req);
+}
+
+void Go2SportClient::Content(unitree_api::msg::Request & req)
+{
+    req.header.identity.api_id = SPORT_API_CONTENT;
+    req_pub_->publish(req);
+}
+
 void Go2SportClient::Heart(unitree_api::msg::Request & req)
 {
     req.header.identity.api_id = SPORT_API_HEART;

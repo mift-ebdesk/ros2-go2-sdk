@@ -274,4 +274,4 @@ Joystick ──► /cmd_vel_joy (priority 5) ───┘
 
 ## Complete DDS Reference
 
-See [GO2_DDS.md](./GO2_DDS.md) for the full list of ~90 robot DDS topics.
+See [NATIVE-TOPICS.md](./NATIVE-TOPICS.md) for the full list of ~90 robot DDS topics.

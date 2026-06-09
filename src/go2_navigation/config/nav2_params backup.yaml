@@ -119,7 +119,6 @@ controller_server:
     odom_topic: /utlidar/robot_odom 
     use_sim_time: False
     controller_frequency: 5.0
-    speed_limit_topic: "/speed_limit"
     # min_x_velocity_threshold: 0.001
     # min_y_velocity_threshold: 0.5
     # min_theta_velocity_threshold: 0.001
@@ -226,7 +225,6 @@ local_costmap:
 
       footprint: "[ [0.38, 0.18], [0.38, -0.18], [-0.38, -0.18], [-0.38, 0.18] ]"
       plugins: ["obstacle_layer", "denoise_layer", "inflation_layer"]
-      filters: ["keepout_filter", "passable_filter", "speed_filter"]
 
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
@@ -256,22 +254,6 @@ local_costmap:
         cost_scaling_factor: 5.0
         inflation_radius: 0.35
 
-      keepout_filter:
-        plugin: "nav2_costmap_2d::KeepoutFilter"
-        enabled: true
-        filter_info_topic: "/keepout_costmap_filter_info"
-
-      passable_filter:
-        plugin: "passable_filter::PassableFilter"
-        enabled: true
-        filter_info_topic: "/passable_costmap_filter_info"
-
-      speed_filter:
-        plugin: "nav2_costmap_2d::SpeedFilter"
-        enabled: true
-        filter_info_topic: "/speed_costmap_filter_info"
-        speed_limit_topic: "/speed_limit"
-
       always_send_full_costmap: True
 
 
@@ -289,7 +271,6 @@ global_costmap:
       
       footprint: "[ [0.38, 0.18], [0.38, -0.18], [-0.38, -0.18], [-0.38, 0.18] ]"
       plugins: ["static_layer", "obstacle_layer", "denoise_layer", "inflation_layer"]
-      filters: ["keepout_filter", "passable_filter", "guidance_filter"]
 
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
@@ -322,23 +303,6 @@ global_costmap:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 5.0
         inflation_radius: 0.35
-
-      keepout_filter:
-        plugin: "nav2_costmap_2d::KeepoutFilter"
-        enabled: true
-        filter_info_topic: "/keepout_costmap_filter_info"
-
-      passable_filter:
-        plugin: "passable_filter::PassableFilter"
-        enabled: true
-        filter_info_topic: "/passable_costmap_filter_info"
-
-      guidance_filter:
-        plugin: "guidance_filter::GuidanceFilter"
-        enabled: true
-        filter_info_topic: "/guidance_costmap_filter_info"
-        buffer_radius: 5
-        surround_cost: 5
 
       always_send_full_costmap: False
 
@@ -480,22 +444,6 @@ lifecycle_manager_localization:
     use_sim_time: False
     autostart: true
     node_names: ['map_server', 'amcl']
-    bond_timeout: 4.0
-    attempt_respawn_reconnection: true
-    bond_respawn_max_duration: 10.0
-    bond_heartbeat_period: 0.25
-    introspection_mode: "disabled"
-
-lifecycle_manager_filters:
-  ros__parameters:
-    use_sim_time: False
-    autostart: true
-    node_names: [
-      'keepout_filter_mask_server', 'keepout_costmap_filter_info_server',
-      'passable_filter_mask_server', 'passable_costmap_filter_info_server',
-      'guidance_filter_mask_server', 'guidance_costmap_filter_info_server',
-      'speed_filter_mask_server', 'speed_costmap_filter_info_server',
-    ]
     bond_timeout: 4.0
     attempt_respawn_reconnection: true
     bond_respawn_max_duration: 10.0

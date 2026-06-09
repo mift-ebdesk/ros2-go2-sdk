@@ -121,6 +121,7 @@ class Go2NodeFactory:
                 executable='teleop_node',
                 name='go2_teleop_node',
                 parameters=[self.config.configs['twist_mux']],
+                remappings=[('cmd_vel', 'cmd_vel_joy')],  
                 condition=UnlessCondition(LaunchConfiguration('mqtt')),
             ),
             Node(

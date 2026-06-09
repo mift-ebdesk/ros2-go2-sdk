@@ -7,6 +7,50 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
 
+FILTER_DEFS = {
+    'keepout': {
+        'mask_yaml': 'keepout/keepout_mask.yaml',
+        'mask_topic': '/keepout_filter_mask',
+        'mask_node': 'keepout_filter_mask_server',
+        'info_topic': '/keepout_costmap_filter_info',
+        'info_node': 'keepout_costmap_filter_info_server',
+        'type': 0,
+        'base': 0.0,
+        'multiplier': 1.0,
+    },
+    'passable': {
+        'mask_yaml': 'passable/passable_mask.yaml',
+        'mask_topic': '/passable_filter_mask',
+        'mask_node': 'passable_filter_mask_server',
+        'info_topic': '/passable_costmap_filter_info',
+        'info_node': 'passable_costmap_filter_info_server',
+        'type': 0,
+        'base': 0.0,
+        'multiplier': 1.0,
+    },
+    'guidance': {
+        'mask_yaml': 'guidance/guidance_mask.yaml',
+        'mask_topic': '/guidance_filter_mask',
+        'mask_node': 'guidance_filter_mask_server',
+        'info_topic': '/guidance_costmap_filter_info',
+        'info_node': 'guidance_costmap_filter_info_server',
+        'type': 0,
+        'base': 0.0,
+        'multiplier': 1.0,
+    },
+    'speed': {
+        'mask_yaml': 'speed/speed_mask.yaml',
+        'mask_topic': '/speed_filter_mask',
+        'mask_node': 'speed_filter_mask_server',
+        'info_topic': '/speed_costmap_filter_info',
+        'info_node': 'speed_costmap_filter_info_server',
+        'type': 1,
+        'base': 100.0,
+        'multiplier': -1.0,
+    },
+}
+
+
 class Go2LaunchConfig:
     def __init__(self):
         dirs = {
@@ -21,6 +65,10 @@ class Go2LaunchConfig:
             'rviz_nav': os.path.join(dirs['controller'], 'rviz', 'navigation.rviz'),
             'bringup_launch': os.path.join(dirs['bringup'], 'launch', 'go2_bringup.launch.py'),
         }
+        self.masks = {
+            name: os.path.join(dirs['navigation'], 'mask', fdef['mask_yaml'])
+            for name, fdef in FILTER_DEFS.items()
+        }
         self.dirs = dirs
 
 
@@ -29,12 +77,16 @@ class Go2NodeFactory:
         self.config = config
 
     def create_launch_args(self):
-        default_map = os.path.join(self.config.dirs['navigation'], 'maps', 'lobby.yaml')
+        default_map = os.path.join(self.config.dirs['navigation'], 'maps', 'Studio.yaml')
         return [
             DeclareLaunchArgument('map', default_value=default_map),
             DeclareLaunchArgument('camera', default_value='true'),
             DeclareLaunchArgument('platform', default_value='jetson'),
             DeclareLaunchArgument('mqtt', default_value='false'),
+            DeclareLaunchArgument('enable_keepout', default_value='true'),
+            DeclareLaunchArgument('enable_passable', default_value='true'),
+            DeclareLaunchArgument('enable_guidance', default_value='true'),
+            DeclareLaunchArgument('enable_speed', default_value='true'),
         ]
 
     def create_env_setup(self):
@@ -58,6 +110,68 @@ class Go2NodeFactory:
                 }.items(),
             ),
         ]
+
+    def create_filter_servers(self):
+        def spawn_filters(context):
+            nodes = []
+            filter_node_names = []
+
+            for name, fdef in FILTER_DEFS.items():
+                enabled = context.launch_configurations.get(f'enable_{name}', 'true')
+                if enabled.lower() != 'true':
+                    continue
+
+                mask_yaml = self.config.masks[name]
+
+                nodes.append(Node(
+                    package='nav2_map_server',
+                    executable='map_server',
+                    name=fdef['mask_node'],
+                    parameters=[{
+                        'yaml_filename': mask_yaml,
+                        'topic_name': fdef['mask_topic'],
+                    }],
+                    output='screen',
+                ))
+
+                nodes.append(Node(
+                    package='nav2_map_server',
+                    executable='costmap_filter_info_server',
+                    name=fdef['info_node'],
+                    parameters=[{
+                        'type': fdef['type'],
+                        'filter_info_topic': fdef['info_topic'],
+                        'mask_topic': fdef['mask_topic'],
+                        'base': fdef['base'],
+                        'multiplier': fdef['multiplier'],
+                    }],
+                    output='screen',
+                ))
+
+                filter_node_names.append(fdef['mask_node'])
+                filter_node_names.append(fdef['info_node'])
+
+            if filter_node_names:
+                nodes.append(Node(
+                    package='nav2_lifecycle_manager',
+                    executable='lifecycle_manager',
+                    name='lifecycle_manager_filters',
+                    parameters=[{
+                        'use_sim_time': False,
+                        'autostart': True,
+                        'node_names': filter_node_names,
+                        'bond_timeout': 4.0,
+                        'attempt_respawn_reconnection': True,
+                        'bond_respawn_max_duration': 10.0,
+                        'bond_heartbeat_period': 0.25,
+                        'introspection_mode': 'disabled',
+                    }],
+                    output='screen',
+                ))
+
+            return nodes
+
+        return [OpaqueFunction(function=spawn_filters)]
 
     def create_nav2_launches(self):
         nav2_params = self.config.configs['nav2_params']
@@ -106,6 +220,7 @@ def generate_launch_description():
         *factory.create_launch_args(),
         *factory.create_env_setup(),
         *factory.create_bringup(),
+        *factory.create_filter_servers(),
         *factory.create_nav2_launches(),
         *factory.create_visualization_nodes(),
     ])

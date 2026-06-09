@@ -3,7 +3,7 @@ project(go2_navigation)
 
 find_package(ament_cmake REQUIRED)
 
-install(DIRECTORY config maps
+install(DIRECTORY config maps mask
   DESTINATION share/${PROJECT_NAME}
 )
 
