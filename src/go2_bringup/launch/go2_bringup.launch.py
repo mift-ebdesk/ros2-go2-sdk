@@ -36,8 +36,9 @@ class Go2NodeFactory:
     def create_launch_args(self):
         return [
             DeclareLaunchArgument('camera', default_value='true'),
-            DeclareLaunchArgument('platform', default_value='jetson'),
             DeclareLaunchArgument('mqtt', default_value='false'),
+            DeclareLaunchArgument('platform', default_value='jetson'),
+
         ]
 
     def create_env_setup(self):

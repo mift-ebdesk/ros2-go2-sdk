@@ -81,12 +81,13 @@ class Go2NodeFactory:
         return [
             DeclareLaunchArgument('map', default_value=default_map),
             DeclareLaunchArgument('camera', default_value='true'),
-            DeclareLaunchArgument('platform', default_value='jetson'),
             DeclareLaunchArgument('mqtt', default_value='false'),
             DeclareLaunchArgument('enable_keepout', default_value='true'),
             DeclareLaunchArgument('enable_passable', default_value='true'),
             DeclareLaunchArgument('enable_guidance', default_value='true'),
             DeclareLaunchArgument('enable_speed', default_value='true'),
+            DeclareLaunchArgument('platform', default_value='jetson', choices=['jetson', 'pc'],
+                                    description='Target platform [jetson || pc]'),
         ]
 
     def create_env_setup(self):
